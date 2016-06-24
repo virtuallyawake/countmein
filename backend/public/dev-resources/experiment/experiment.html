@@ -1,0 +1,36 @@
+<p>This page is meant to be a safe spot where experiments can be performed</p>
+
+<we-d3-lines  options="weExperimentCtrl.chartDataOptions"
+              data="weExperimentCtrl.chartData">
+</we-d3-lines>
+
+<we-table options="weExperimentCtrl.tableData.options"
+          keys="weExperimentCtrl.tableData.keys"
+          target-object="weExperimentCtrl.tableData.data"
+          select-placeholder="{{weExperimentCtrl.tableData.selectPlaceholder}}"
+          lockdown="weExperimentCtrl.lockdown"
+          lockdown-key="status"
+          save-object="weExperimentCtrl"
+          save-function="saveEntry"
+          delete-object="weExperimentCtrl"
+          delete-function="deleteEntry">
+</we-table>
+
+<div class="panel we-panel-default">
+  <div class="panel-heading">
+     <h3 class="panel-title">Do some more stuff</h3>
+  </div>
+  <div class="panel-body">
+    <we-input-group edit-mode="{{weExperimentCtrl.editButton || false}}"
+                    keys="weExperimentCtrl.tableData.keys"
+                    source="weExperimentCtrl.tableData.data[0]"
+                    units="col-xs-12 col-sm-6"
+                    lockdown="weExperimentCtrl.lockdown"
+                    lockdown-key="status"
+                    model="weExperimentCtrl.tableData.data[0]">
+    </we-input-group>
+  </div>
+  <div class="panel-footer">
+    <button class="btn btn-primary" ng-click="weExperimentCtrl.editButton = !weExperimentCtrl.editButton">Edit</button>
+  </div>
+</div>

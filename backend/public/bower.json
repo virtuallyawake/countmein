@@ -1,0 +1,6 @@
+{
+  "name": "Bower dependencies for WE2",
+  "dependencies": {
+      "marked": "~0.3.x"
+  }
+}

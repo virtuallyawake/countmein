@@ -1,0 +1,23 @@
+<table st-table="weListTarget" class="table table-striped">
+	<thead>
+	<tr>
+		<th ng-repeat="(key, value) in weListTarget[0]">
+			{{key}}
+		</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr ng-repeat="row in weListTarget">
+		<td ng-repeat="value in row">
+			<span ng-if="value.type == CONTENT_TYPES.LINK">
+				<a href="{{value.content.url}}">
+					{{value.content.anchorText}}
+				</a>
+			</span>
+			<span ng-if="value.type == CONTENT_TYPES.STRING">
+				{{value.content}}
+			</span>
+		</td>
+	</tr>
+	</tbody>
+</table>

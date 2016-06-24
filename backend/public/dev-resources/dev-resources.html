@@ -1,0 +1,13 @@
+<we-tabs name="Dev Resources menu" tabs="weDevResourcesCtrl.tabs" active-object="weDevResourcesCtrl.mainService.subview", active-key="id"></we-tabs>
+
+<div ng-show="weDevResourcesCtrl.mainService.subview.initialLoadingState == weMainCtrl.LOADING_STATES.LOADING">
+  <we-data-loading></we-data-loading>
+</div>
+
+<div ng-show="weDevResourcesCtrl.mainService.subview.initialLoadingState == weMainCtrl.LOADING_STATES.DONE">
+  <ui-view></ui-view>
+</div>
+
+<div ng-show="weDevResourcesCtrl.mainService.subview.initialLoadingState == weMainCtrl.LOADING_STATES.ERROR">
+  <p>Er is een fout opgetreden tijdens het laden van de gegevens.</p>
+</div>

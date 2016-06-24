@@ -1,0 +1,6 @@
+// File: app/core/css/mixins.scss
+
+@mixin rounded-edges($radius: 3px) {
+  border-radius: $radius;
+  @content;
+}

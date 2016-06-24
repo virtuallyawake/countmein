@@ -1,0 +1,30 @@
+.we-table-sort-ascent:after{
+  content: '\25B2';
+}
+
+.we-table-sort-descent:after{
+  content: '\25BC';
+}
+
+.we-table-sortable-heading{
+  cursor:pointer;
+}
+
+.we-table-sortable-heading:before{
+  /* Got this string from a discussion on GitHub about the Smart Table Angular plugin: https://github.com/lorenzofox3/Smart-Table/issues/259 */
+  content: url(data:image/gif;base64,R0lGODlhCwALAJEAAAAAAP///xUVFf///yH5BAEAAAMALAAAAAALAAsAAAIUnC2nKLnT4or00PvyrQwrPzUZshQAOw==);
+  padding-right:3px;
+  cursor:pointer;
+}
+
+.l-we-table-btn{
+  margin-right:5px;
+}
+
+.we-table-scrollable{
+  overflow-x: scroll;
+}
+
+.l-we-table-mobile-buttons-wrapper{
+  margin-top:12px;
+}

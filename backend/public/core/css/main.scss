@@ -1,0 +1,66 @@
+// File: app/core/css/main.scss
+
+@import 'variables';
+@import 'mixins';
+@import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
+@import 'custom-bootstrap';
+@import 'dashboard';
+@import 'ie10-viewport-bug-workaround';
+
+// For the components
+@import '../../components/tabs/tabs.scss';
+@import '../../components/table/table.scss';
+@import '../../components/input-group/input-group.scss';
+@import '../../components/d3-lines/d3-lines.scss';
+
+// Declarations
+
+.we-overlay {
+  background: $we-white;
+  color: $we-black;
+}
+
+.l-we-overlay{
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  padding-top:16%;
+}
+
+.we-view-loading {
+  padding-top: 16%;
+}
+
+.l-we-data-loading {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.l-we-main-view-padding {
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.grid {
+  height: 250px;
+  width: 500px;
+}
+
+.ng-file-upload-drop-box {
+  background: $we-soft-white;
+  border: 5px dashed $we-soft-grey;
+  text-align: center;
+}
+
+.l-ng-file-upload-drop-box {
+  margin: 10px;
+  min-height: 70px;
+  padding: 15px;
+  width: 200px;
+}
+
+.ng-file-upload-dragover {
+  border: 5px dashed $we-blue;
+}

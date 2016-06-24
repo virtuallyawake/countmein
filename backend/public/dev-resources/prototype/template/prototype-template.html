@@ -1,0 +1,275 @@
+<h2>Buttons</h2>
+
+<p>For the buttons, we make use of the <a href="http://getbootstrap.com/" target="_blank">Boostrap library</a></p>
+
+<p>
+  <button class="btn btn-default">.btn.btn-default</button>
+  <button class="btn btn-primary">.btn.btn-primary</button>
+  <button class="btn btn-success">.btn.btn-success</button>
+</p>
+<p>
+  <button class="btn btn-warning">.btn.btn-warning</button>
+  <button class="btn btn-danger">.btn.btn-danger</button>
+</p>
+
+<h3>Custom buttons</h3>
+
+<p>Examples of custom buttons, built relying on the <a href="https://github.com/twbs/bootstrap-sass" target="_blank">Bootstrap Sass port</a>.</p>
+<p>These can also be applied to the native buttons</p>
+
+<button class="btn we-btn-default">.btn.we-btn-default</button>
+<button class="btn we-btn-primary">.btn.we-btn-primary</button>
+
+<h2>Tabs</h2>
+
+<p>For the tabs, we make use of the <a href="http://getbootstrap.com/" target="_blank">Boostrap library</a></p>
+
+<we-tabs name="Tab options" tabs="wePrototypeCtrl.tabs" active-object="wePrototypeCtrl", active-key="activeTab"></we-tabs>
+
+<h2>Headings</h2>
+
+<p>For the headings, we make use of the <a href="http://getbootstrap.com/" target="_blank">Bootstrap library</a></p>
+
+<h1>Heading1</h1>
+<h2>Heading2</h2>
+<h3>Heading3</h3>
+<h4>Heading4</h4>
+<h5>Heading5</h5>
+<h6>Heading6</h6>
+
+<h2>Icons</h2>
+
+<p>For the icons, we make use of the <a href="http://fontawesome.io/icons/" target="_blank">Font Awesome library</a></p>
+
+<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> loading |
+<i class="fa fa-floppy-o" aria-hidden="true"></i> save |
+<i class="fa fa-pencil-square-o" aria-hidden="true"></i> edit |
+<i class="fa fa-undo" aria-hidden="true"></i> undo |
+<i class="fa fa-trash-o" aria-hidden="true"></i> delete |
+<i class="fa fa-plus" aria-hidden="true"></i> add |
+<i class="fa fa-minus" aria-hidden="true"></i> remove |
+<i class="fa fa-user" aria-hidden="true"></i> user |
+<i class="fa fa-calendar" aria-hidden="true"></i> calendar |
+<i class="fa fa-users" aria-hidden="true"></i> users
+
+<br/>
+<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+<span class="sr-only">Loading...</span> Loading icon big
+
+<h2>Labels</h2>
+
+<p>For the labels, we make use of the <a href="http://getbootstrap.com/" target="_blank">Boostrap library</a></p>
+
+<span class="label label-default">Default</span>
+<span class="label label-primary">Primary</span>
+<span class="label label-success">Success</span>
+<span class="label label-warning">Warning</span>
+<span class="label label-danger">Danger</span>
+<span class="label label-custom">Custom</span>
+
+<h3>Custom labels</h3>
+
+<p>Examples of custom labels, built relying on the <a href="https://github.com/twbs/bootstrap-sass" target="_blank">Bootstrap Sass port</a>.</p>
+<p>These can also be applied to the native labels.</p>
+
+<span class="label we-label-default">.label.we-label-default</span>
+<span class="label we-label-primary">.label.we-label-primary</span>
+
+<h2>Badges</h2>
+
+<p>For the badges, we make use of the <a href="http://getbootstrap.com/" target="_blank">Boostrap library</a></p>
+
+Stand alone: <span class="badge">42</span>
+
+<button class="btn btn-primary" type="button">
+  In-button <span class="badge">4</span>
+</button>
+
+<h2>Panels and forms</h2>
+
+<p>For the panels, forms and input fields we use the <a href="http://v4-alpha.getbootstrap.com/components/forms/" target="_blank">Bootstrap form</a> default.</p>
+
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <div class="panel we-panel-default">
+      <div class="panel-heading">
+         <h3 class="panel-title">This describes the purpose of the form</h3>
+      </div>
+      <div class="panel-body">
+        <form>
+          <fieldset class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+            <small class="text-muted">We'll never share your email with anyone else.</small>
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="exampleSelect1">Example select</label>
+            <select class="form-control" id="exampleSelect1">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="exampleSelect2">Example multiple select</label>
+            <select multiple class="form-control" id="exampleSelect2">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="exampleTextarea">Example textarea</label>
+            <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="exampleInputFile">File input</label>
+            <input type="file" class="form-control-file" id="exampleInputFile">
+            <small class="text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+          </fieldset>
+          <div class="radio">
+            <label>
+              <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+              Option one is this and that&mdash;be sure to include why it's great
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+              Option two can be something else and selecting it will deselect option one
+            </label>
+          </div>
+          <div class="radio disabled">
+            <label>
+              <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" disabled>
+              Option three is disabled
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox"> Check me out
+            </label>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2>Tooltips</h2>
+
+<p>For tooltips, we make use of the <a href="https://angular-ui.github.io/bootstrap/" target="_blank">UI Bootstrap</a> library.</p>
+
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <fieldset class="form-group">
+      <label for="exampleInputPassword1">Tooltip demo</label>
+      <input type="text" class="form-control" uib-tooltip="I appear when you hover the input field" placeholder="Hover me" />
+    </fieldset>
+  </div>
+</div>
+
+<h2>Accordions</h2>
+
+<p>For accordions, we make use of the <a href="https://angular-ui.github.io/bootstrap/" target="_blank">UI Bootstrap</a> library.</p>
+
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <uib-accordion close-others="true">
+      <uib-accordion-group heading="Heading1">
+        Content 1
+      </uib-accordion-group>
+      <uib-accordion-group heading="Heading2">
+        Content 2
+      </uib-accordion-group>
+      <uib-accordion-group heading="Heading3">
+        Content 3
+      </uib-accordion-group>
+    </uib-accordion>
+  </div>
+</div>
+
+<h2>Modals</h2>
+
+<p>For modals (also known as popup dialog screens), we make use of the <a href="https://angular-ui.github.io/bootstrap/" target="_blank">UI Bootstrap</a> library.</p>
+
+<p><button class="btn btn-primary" ng-click="wePrototypeCtrl.openModal()">Open modal</button></p>
+
+<p>Value that goes into the modal: {{wePrototypeCtrl.item}}</p>
+<p>Value returned by the modal: {{wePrototypeCtrl.result}}</p>
+
+<h2>Datepicker popups</h2>
+
+<p>For datepicker popups, we make use of the <a href="https://angular-ui.github.io/bootstrap/" target="_blank">UI Bootstrap</a> library</p>
+
+<div class="row">
+  <div class="col-xs-12 col-md-4">
+    <we-datepicker target-object="wePrototypeCtrl" target-model="dt" we-date-options="wePrototypeCtrl.dateOptions"></we-datepicker>
+
+    <h3>Output:</h3>
+    <div class="well well-lg" ng-bind="wePrototypeCtrl.dt"></div>
+  </div>
+</div>
+
+<h2>Tables</h2>
+
+<p>For tables, we make use of the <a href="http://lorenzofox3.github.io/smart-table-website/" target="_blank">Smart Table directives</a> AngularJS extension</p>
+
+<we-table options="wePrototypeCtrl.tableData.options"
+          keys="wePrototypeCtrl.tableData.keys"
+          target-object="wePrototypeCtrl.tableData.data"
+          select-placeholder="{{wePrototypeCtrl.tableData.selectPlaceholder}}"
+          lockdown="wePrototypeCtrl.lockdown"
+          lockdown-key="status"
+          save-object="wePrototypeCtrl"
+          save-function="saveEntry"
+          delete-object="wePrototypeCtrl"
+          delete-function="deleteEntry">
+</we-table>
+
+<h2>Grid</h2>
+
+<p>For the grid display we make use of <a href="http://ui-grid.info/" target="_blank">Angular UI Grid</a></p>
+
+<div id="grid1" ui-grid="{ data: wePrototypeCtrl.myData }" class="grid"></div>
+
+<h2>Markdown editor</h2>
+
+<p>For the editors, we currently make use of the <a href="http://www.codingdrama.com/bootstrap-markdown/" target="_blank">Bootstrap Markdown editor</a>.</p>
+<p>To output the markdown format, we use the <a href="https://github.com/chjj/marked" target="_blank">marked</a> extension.</p>
+
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <we-text-editor target-object="wePrototypeCtrl" target-input-key="markdownInput" target-output-key="markdownOutput"></we-text-editor>
+
+    <h3>Output:</h3>
+    <div class="well well-lg" ng-bind-html="wePrototypeCtrl.allowHtml(wePrototypeCtrl.markdownOutput)"></div>
+  </div>
+</div>
+
+<h2>Upload file selector</h2>
+
+<p>For the file uploading interface, we currently make use of the <a href="https://github.com/danialfarid/ng-file-upload" target="_blank">ng file uploader</a>.</p>
+
+<div ngf-drop="wePrototypeCtrl.uploadFiles($files)" class="ng-file-upload-drop-box l-ng-file-upload-drop-box"
+  ngf-drag-over-class="'ng-file-upload-dragover'" ngf-multiple="true"
+  ngf-pattern="'image/*,application/pdf'">Drop Images or PDF files here</div>
+<div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+
+<h2>Toaster notifications</h2>
+
+<p>For the toaster notifications, we make use of the <a href="http://tamerayd.in/ngToast/#" target="_blank">ngToast</a> Bootstrap/Angular plugin</p>
+
+<button class="btn btn-primary" ng-click="wePrototypeCtrl.normalToast('An info toast')">Show toast</button>
+<button class="btn btn-success" ng-click="wePrototypeCtrl.successToast('A success toast')">Show success toast</button>
+<button class="btn btn-warning" ng-click="wePrototypeCtrl.warningToast('A warning toast')">Show warning toast</button>
+<button class="btn btn-danger" ng-click="wePrototypeCtrl.dangerToast('A danger toast')">Show danger toast</button>

@@ -1,0 +1,24 @@
+// File: app/core/css/custom-bootstrap.scss
+
+.we-btn-default {
+  @include button-variant($we-white, $we-brown, $we-brown);
+}
+
+.we-btn-primary {
+  @include button-variant($we-white, $we-purple, $we-purple);
+}
+
+.we-label-default {
+  @include label-variant($we-brown);
+}
+
+.we-label-primary {
+  @include label-variant($we-purple);
+}
+
+.we-panel-default {
+  @include panel-variant($panel-default-border, $panel-default-text, $panel-default-heading-bg, $panel-default-border);
+}
+.we-panel-primary {
+  @include panel-variant($panel-primary-border, $panel-primary-text, $panel-primary-heading-bg, $panel-primary-border);
+}

@@ -1,0 +1,18 @@
+// File: app/components/d3-lines/d3-lines.scss
+
+.we-chart-axis path,
+.we-chart-axis line
+{
+  fill: none;
+  stroke: black;
+  //shape-rendering: crispEdges;
+}
+
+.we-chart-axis text{
+  font-family: $font-family-base;
+  font-size: 11px;
+}
+
+.we-chart-axis .tick line{
+  stroke: #ddd;
+}
