@@ -109,7 +109,7 @@ module.exports = function(grunt) {
         src: ['backend/public/node_modules/bootstrap/dist/js/bootstrap.min.js',
               'backend/public/node_modules/angular-sanitize/angular-sanitize.min.js',
               'backend/public/node_modules/angular-animate/angular-animate.min.js',
-              'backend/public/node_modules/angular-ui-grid/ui-grid.min.js',
+              'backend/public/node_modules/angular-ui-grid/ui-grid.js',
               'backend/public/node_modules/angular-ui-router/release/angular-ui-router.min.js',
               'backend/public/node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js',
               'backend/public/node_modules/angular-smart-table/dist/smart-table.min.js',

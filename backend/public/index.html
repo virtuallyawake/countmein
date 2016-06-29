@@ -38,34 +38,27 @@
 
     <!-- Body -->
     <div ng-if="weMainCtrl.mainService.isLoaded" class="l-we-main-body">
-      <ng-include src="'tpl/menu.html'"></ng-include>
 
-      <div class="container-fluid">
-        <div class="row">
+      <div class="container">
 
-          <!-- Sidebar -->
-          <ng-include src="'tpl/sidebar.html'"></ng-include>
+        <ng-include src="'tpl/menu.html'"></ng-include>
 
-          <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <!-- Main content -->
 
-            <!-- Main content -->
+        <h1 class="page-header">{{weMainCtrl.mainService.page.title}}</h1>
 
-            <h1 class="page-header">{{weMainCtrl.mainService.page.title}}</h1>
-
-            <div ng-show="weMainCtrl.mainService.page.initialLoadingState == weMainCtrl.LOADING_STATES.LOADING">
-              <we-data-loading></we-data-loading>
-            </div>
-
-            <div ng-show="weMainCtrl.mainService.page.initialLoadingState == weMainCtrl.LOADING_STATES.DONE">
-              <ui-view></ui-view>
-            </div>
-
-            <div ng-show="weMainCtrl.mainService.page.initialLoadingState == weMainCtrl.LOADING_STATES.ERROR">
-              <p>Er is een fout opgetreden tijdens het laden van de gegevens.</p>
-            </div>
-
-          </div>
+        <div ng-show="weMainCtrl.mainService.page.initialLoadingState == weMainCtrl.LOADING_STATES.LOADING">
+          <we-data-loading></we-data-loading>
         </div>
+
+        <div ng-show="weMainCtrl.mainService.page.initialLoadingState == weMainCtrl.LOADING_STATES.DONE">
+          <ui-view></ui-view>
+        </div>
+
+        <div ng-show="weMainCtrl.mainService.page.initialLoadingState == weMainCtrl.LOADING_STATES.ERROR">
+          <p>Er is een fout opgetreden tijdens het laden van de gegevens.</p>
+        </div>
+
       </div>
     </div>
 

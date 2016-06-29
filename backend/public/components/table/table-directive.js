@@ -140,7 +140,7 @@ weApp.directive('weTable', ['WeToolService', '$interval', function(WeToolService
                     '</td>' +
 
                     /* Last optional column for edit, delete, save and undo buttons */
-                    '<td ng-if="options.editEnabled || options.deleteEnabled">' +
+                    '<td ng-if="options.editEnabled || options.deleteEnabled" class="text-right">' +
                       '<span ng-if="targetObject.indexOf(row) != rowBeingEdited">' +
                         '<button ng-disabled="lockdown[lockdownKey] === true" ng-if="options.editEnabled" class="btn btn-primary l-we-table-btn" ng-click="editRow(row)">Edit</button>' +
                         '<button ng-disabled="lockdown[lockdownKey] === true" ng-if="options.deleteEnabled" class="btn btn-danger l-we-table-btn" ng-click="deleteRow(row)">Delete</button>' +

@@ -10,9 +10,9 @@ weApp.constant("WE_CONSTANTS", (function(){
 
     NOT_ALLOWED: { ID: 999, TITLE: "Niet toegestaan" },
 
-    DASHBOARD: { ID: 0, TITLE: "Dashboard" },
+    DASHBOARD: { ID: 0, TITLE: "New event" },
 
-    DEFAULT: { ID: 0, TITLE: "Dashboard" }
+    DEFAULT: { ID: 0, TITLE: "New event" }
   };
 
   var SUBVIEWS = {

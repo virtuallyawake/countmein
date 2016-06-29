@@ -1,5 +1,108 @@
-<p>Welkom, {{weDashboardCtrl.user.first_name}}</p>
+<h2>1. Fill out your own personal details</h2>
 
-<we-text-editor target-object="dashboardCtrl.myObj" target-input-key="textEditor" target-output-key="outputKey"></we-text-editor>
+<div class="panel we-panel-default">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-xs-12 col-sm-4">
+        <fieldset class="form-group">
+          <label for="organiserFirstName">First name</label>
+          <input ng-disabled="weDashboardCtrl.lockdown.status === true" type="text" ng-model="weDashboardCtrl.eventDetails.organiser.firstName" class="form-control" id="organiserFirstName" placeholder="Jane">
+        </fieldset>
+      </div>
+      <div class="col-xs-12 col-sm-4">
+        <fieldset class="form-group">
+          <label for="organiserLastName">Last name</label>
+          <input ng-disabled="weDashboardCtrl.lockdown.status === true" type="text" ng-model="weDashboardCtrl.eventDetails.organiser.lastName" class="form-control" id="organiserLastName" placeholder="Doe">
+        </fieldset>
+      </div>
+      <div class="col-xs-12 col-sm-4">
+        <fieldset class="form-group">
+          <label for="organiserEmail">Email</label>
+          <input ng-disabled="weDashboardCtrl.lockdown.status === true" type="text" ng-model="weDashboardCtrl.eventDetails.organiser.email" class="form-control" id="organiserEmail" placeholder="jane.doe@gmail.com">
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>
 
-{{dashboardCtrl.myObj.outputKey}}
+
+<div class="row">
+  <div class="col-xs-12 col-sm-4">
+    <h2>2. Specify your event</h2>
+    <div class="panel we-panel-default">
+      <div class="panel-body">
+
+        <fieldset class="form-group">
+          <label for="eventName">What is the name of your event?</label>
+          <input ng-disabled="weDashboardCtrl.lockdown.status === true" type="text" ng-model="weDashboardCtrl.eventDetails.name" class="form-control" id="eventName" placeholder="Name of your event">
+        </fieldset>
+
+        <fieldset class="form-group">
+          <label for="rsvpDate">When will your event take place?</label>
+          <we-datepicker target-object="weDashboardCtrl.eventDetails" target-model="date" we-date-options="weDashboardCtrl.dateOptions"></we-datepicker>
+        </fieldset>
+
+        <fieldset class="form-group">
+          <label for="rsvpInvitationContent">What do you want your invitation to say about your event?</label>
+          <textarea ng-disabled="weDashboardCtrl.lockdown.status === true"class="form-control" ng-model="weDashboardCtrl.eventDetails.description" id="rsvpInvitationContent" rows="5"></textarea>
+        </fieldset>
+
+      </div> <!-- End panel body -->
+    </div> <!-- End panel -->
+  </div> <!-- End col -->
+
+  <div class="col-xs-12 col-sm-8">
+    <h2>3. Add people you want to invite</h2>
+    <div class="panel we-panel-default">
+      <div class="panel-body">
+
+        <fieldset class="form-group">
+          <div id="participant" class="row">
+            <div class="col-xs-12 col-sm-4">
+              <label for="participantFirstName">First name</label>
+              <input ng-disabled="weDashboardCtrl.lockdown.status === true" type="text" ng-model="weDashboardCtrl.newParticipant.firstName" class="form-control" id="participantFirstName" placeholder="First name">
+            </div>
+            <div class="col-xs-12 col-sm-4">
+              <label for="participantLastName">Last name</label>
+              <input ng-disabled="weDashboardCtrl.lockdown.status === true" type="text" ng-model="weDashboardCtrl.newParticipant.lastName" class="form-control" id="participantLastName" placeholder="Last name">
+            </div>
+            <div class="col-xs-12 col-sm-4">
+              <label for="participantEmail">Email</label>
+              <input ng-disabled="weDashboardCtrl.lockdown.status === true" type="email" ng-model="weDashboardCtrl.newParticipant.email" class="form-control" id="participantEmail" placeholder="email">
+            </div>
+          </div>
+        </fieldset>
+        <div class="text-right">
+          <button ng-disabled="weDashboardCtrl.lockdown.status === true || weDashboardCtrl.checkParticipantFields()" ng-click="weDashboardCtrl.addParticipant()" class="btn btn-primary">Add participant</button>
+        </div>
+
+        <div ng-if="weDashboardCtrl.eventDetails.participants.length === 0" class="text-center">
+          <i>Add some participants</i>
+        </div>
+        <div ng-if="weDashboardCtrl.eventDetails.participants.length > 0">
+          <we-table options="weDashboardCtrl.tableData.options"
+                    keys="weDashboardCtrl.tableData.keys"
+                    target-object="weDashboardCtrl.eventDetails.participants"
+                    select-placeholder=""
+                    lockdown="weDashboardCtrl.lockdown"
+                    lockdown-key="status"
+                    save-object="weDashboardCtrl"
+                    save-function="updateEntry"
+                    delete-object="weDashboardCtrl"
+                    delete-function="deleteEntry">
+          </we-table>
+        </div>
+
+      </div> <!-- End panel-body -->
+    </div> <!-- End panel -->
+  </div> <!-- End col -->
+</div> <!-- End row -->
+
+<h2>4: Send the invitations</h2>
+<div class="text-center">
+  <div class="panel we-panel-default">
+    <div class="panel-body">
+      <button ng-disabled="weDashboardCtrl.checkAllFields() || weDashboardCtrl.lockdown.status === true" ng-click="weDashboardCtrl.processInvitations()" class="btn btn-primary btn-lg">Send RSVP invitations</button>
+    </div>
+  </div>
+</div>
