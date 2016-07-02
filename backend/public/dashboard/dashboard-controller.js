@@ -5,7 +5,6 @@ weApp.controller('WeDashboardController', ['WeMainService', 'WE_CONSTANTS', 'WeT
 
   var self = this;
   var authToken = WeMainService.user.token;
-  var id = 0;
 
   /* Public variables */
 
@@ -23,7 +22,8 @@ weApp.controller('WeDashboardController', ['WeMainService', 'WE_CONSTANTS', 'WeT
   self.newParticipant = {
     firstName: null,
     lastName: null,
-    email: null
+    email: null,
+    attending: WE_CONSTANTS.ATTENDING_STATUS.UNDECIDED
   };
   self.lockdown = { status: false };
   self.myObj = {
@@ -50,12 +50,21 @@ weApp.controller('WeDashboardController', ['WeMainService', 'WE_CONSTANTS', 'WeT
     }
   };
 
+  self.LOCAL_CONSTANTS = {
+    STATES: {
+      FORM: 0,
+      SUCCESS: 1,
+      ERROR: 2
+    }
+  };
+
+  self.state = self.LOCAL_CONSTANTS.STATES.FORM;
+
   /* Public functions */
 
   self.addParticipant = function(){
     var commit;
 
-    self.newParticipant.id = id++;
     commit = angular.copy(self.newParticipant);
     self.eventDetails.participants.push(commit);
 
@@ -66,7 +75,7 @@ weApp.controller('WeDashboardController', ['WeMainService', 'WE_CONSTANTS', 'WeT
   };
 
   self.updateEntry = function(entry, callback){
-    var index = WeToolService.findWithAttr(self.eventDetails.participants, 'id', entry.id);
+    var index = WeToolService.findWithAttr(self.eventDetails.participants, 'email', entry.email);
 
     angular.copy(entry, self.eventDetails.participants[index]);
     console.log(entry);
@@ -74,7 +83,7 @@ weApp.controller('WeDashboardController', ['WeMainService', 'WE_CONSTANTS', 'WeT
   };
 
   self.deleteEntry = function(entry, callback){
-    var index = WeToolService.findWithAttr(self.eventDetails.participants, 'id', entry.id);
+    var index = WeToolService.findWithAttr(self.eventDetails.participants, 'email', entry.email);
     self.eventDetails.participants.splice(index, 1);
     console.log(entry);
     callback();
@@ -108,10 +117,12 @@ weApp.controller('WeDashboardController', ['WeMainService', 'WE_CONSTANTS', 'WeT
     console.log(self.eventDetails);
     WeBackendService.commitToBackend(self.eventDetails, function(result){
       console.log(result);
+      self.state = self.LOCAL_CONSTANTS.STATES.SUCCESS;
     });
   };
 
   /* Initiation */
 
   WeMainService.page.initialLoadingState = WE_CONSTANTS.LOADING_STATES.DONE;
+
 }]);
