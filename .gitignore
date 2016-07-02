@@ -3,6 +3,7 @@ bower_components
 dist
 backend/public/core/js/app-non-uglified.js
 backend/public/core/js/app.js
+npm-debug.log
 
 # Ignore all emacs backup files
 *~

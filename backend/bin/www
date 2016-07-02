@@ -7,6 +7,12 @@
 var app = require('../app');
 var debug = require('debug')('backend:server');
 var http = require('http');
+var mongoose = require('mongoose');
+var models = require('../models');
+var User = mongoose.model('User');
+
+// Add mongoose query and promise support to express
+require('express-mongoose');
 
 /**
  * Get port from environment and store in Express.
@@ -24,11 +30,29 @@ var server = http.createServer(app);
 /**
  * Listen on provided port, on all network interfaces.
  */
+mongoose.set('debug', true);
+mongoose.connect('mongodb://23.251.140.183:80/my_database', function(err) {
+  if (err) throw err;
 
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+  // Create a user
+  var user = {
+    _id : "daniela@codersco.com",
+    name : {
+       first : "Daniela",
+       last  : "Gavidia"
+    }
+  };
+  User.create(user, function(err, newUser) {
+    if (err)
+      return console.dir(err);
 
+    console.dir(newUser);
+  });
+  
+  server.listen(port);
+  server.on('error', onError);				    
+  server.on('listening', onListening);
+});
 /**
  * Normalize a port into a number, string, or false.
  */
