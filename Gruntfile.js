@@ -109,12 +109,9 @@ module.exports = function(grunt) {
         src: ['backend/public/node_modules/bootstrap/dist/js/bootstrap.min.js',
               'backend/public/node_modules/angular-sanitize/angular-sanitize.min.js',
               'backend/public/node_modules/angular-animate/angular-animate.min.js',
-              'backend/public/node_modules/angular-ui-grid/ui-grid.js',
               'backend/public/node_modules/angular-ui-router/release/angular-ui-router.min.js',
               'backend/public/node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js',
               'backend/public/node_modules/angular-smart-table/dist/smart-table.min.js',
-              'backend/public/bower_components/marked/lib/marked.js',
-              'backend/public/node_modules/bootstrap-markdown/js/bootstrap-markdown.js',
               'backend/public/node_modules/ng-file-upload/dist/ng-file-upload-shim.js',
               'backend/public/node_modules/ng-file-upload/dist/ng-file-upload.min.js',
               'backend/public/node_modules/ng-toast/dist/ngToast.min.js',
@@ -145,13 +142,7 @@ module.exports = function(grunt) {
               'backend/public/components/d3-lines/d3-lines-directive.js',
 
               'backend/public/dashboard/dashboard-controller.js',
-
-              'backend/public/arithmetics/arithmetics-service.js',
-              'backend/public/arithmetics/arithmetics-controller.js',
-              'backend/public/arithmetics/integers/integers-controller.js',
-              'backend/public/arithmetics/rationals/rationals-controller.js',
-              'backend/public/arithmetics/powers/powers-service.js',
-              'backend/public/arithmetics/powers/powers-controller.js'
+              'backend/public/attend/attend-controller.js'
 
             ],
 
@@ -205,8 +196,8 @@ module.exports = function(grunt) {
                 'backend/public/components/**/*.js',
                 'backend/public/main/*.js',
                 'backend/public/dashboard/*.js',
+                'backend/public/attend/*.js',
                 'backend/public/not-allowed/*.js',
-                'backend/public/arithmetics/**/*.js',
                 'backend/public/dev-resources/**/*.js' ],
 
         tasks:['concat', 'jshint', 'uglify', 'bell']

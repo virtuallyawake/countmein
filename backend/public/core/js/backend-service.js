@@ -10,14 +10,14 @@ weApp.factory('WeBackendService', ['$http', 'WE_CONSTANTS', function($http, WE_C
 
   /* Private functions */
 
-  function backendCall(requestedUrl, parameters, resultNames, callback){
+  function backendCall(requestedUrl, method, parameters, resultNames, callback){
 
     if(WE_CONSTANTS.DEBUG.BACKEND){
-      console.log("POST arguments for backend request '" + requestedUrl + "':");
+      console.log(method + " arguments for backend request '" + requestedUrl + "':");
       console.log(parameters);
     }
 
-    return $http.post(requestedUrl, $.param(parameters), {
+    return $http[method](requestedUrl, $.param(parameters), {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
@@ -54,10 +54,10 @@ weApp.factory('WeBackendService', ['$http', 'WE_CONSTANTS', function($http, WE_C
       var parameters = {};
 
       for(var j = 0; j < arguments.length - 1; j++){
-        parameters[backend.POST[j]] = arguments[j];
+        parameters[backend.PARAMETERS[j]] = arguments[j];
       }
 
-      return backendCall(backend.URL, parameters, backend.RESULT, callback);
+      return backendCall(backend.URL, backend.METHOD, parameters, backend.RESULT, callback);
     };
   }
 

@@ -11,6 +11,7 @@ weApp.constant("WE_CONSTANTS", (function(){
     NOT_ALLOWED: { ID: 999, TITLE: "Niet toegestaan" },
 
     DASHBOARD: { ID: 0, TITLE: "New event" },
+    ATTEND: { ID: 1, TITLE: "Attend the event" },
 
     DEFAULT: { ID: 0, TITLE: "New event" }
   };
@@ -34,13 +35,18 @@ weApp.constant("WE_CONSTANTS", (function(){
 
     /* These are all the backend call configurations */
     BACKEND: {
-      COMMIT_TO_BACKEND: { NAME: 'commitToBackend', URL: BACKEND_BASEPATH + '/api/event', POST: [ 'newEvent' ], RESULT: DEFAULT_RESULT },
+      COMMIT_TO_BACKEND: { NAME: 'commitToBackend', URL: BACKEND_BASEPATH + '/api/event', METHOD: "post", PARAMETERS: [ 'newEvent' ], RESULT: DEFAULT_RESULT },
+      GET_EVENT_DETAILS: { NAME: 'getEventDetails', URL: BACKEND_BASEPATH + '/api/event', METHOD: "get", PARAMETERS: [ 'eventId' ], RESULT: DEFAULT_RESULT },
+      GET_PARTICIPANTS: { NAME: 'getParticipants', URL: BACKEND_BASEPATH + '/api/participants', METHOD: "get", PARAMETERS: [ 'eventId' ], RESULT: DEFAULT_RESULT },
+      GET_PARTICIPANT_DETAILS: { NAME: 'getParticipantDetails', URL: BACKEND_BASEPATH + '/api/participant', METHOD: "get", PARAMETERS: [ 'eventId', 'participantId' ], RESULT: DEFAULT_RESULT },
+      UPDATE_PARTICIPANT_DETAILS: { NAME: 'updateParticipantDetails', URL: BACKEND_BASEPATH + '/api/participant', METHOD: "post", PARAMETERS: [ 'eventId', 'participantId', 'participant' ], RESULT: DEFAULT_RESULT }
     },
 
     /* Routing configurations */
     STATES: [
       /* General */
       { NAME: 'dashboard', STATE_CONFIG: [ '/dashboard', 'dashboard/dashboard.html', 'WeDashboardController as weDashboardCtrl', PAGES.DASHBOARD.ID, PAGES.DASHBOARD.TITLE, false, 'page' ] },
+      { NAME: 'attend', STATE_CONFIG: [ '/attend/:eventId/:participantId', 'attend/attend.html', 'WeAttendController as weAttendCtrl', PAGES.ATTEND.ID, PAGES.ATTEND.TITLE, false, 'page' ] },
     ],
 
     /* This is a collection of what right is required for what (sub)view */
@@ -68,5 +74,11 @@ weApp.constant("WE_CONSTANTS", (function(){
       BOOLEAN: 3,
       FLOAT: 4
     },
+
+    ATTENDING_STATUS: {
+      NO: 0,
+      YES: 1,
+      UNDECIDED: 2
+    }
   };
 })());
