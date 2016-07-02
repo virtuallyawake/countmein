@@ -1,6 +1,6 @@
 /* File: app/dashboard/dashboard-controller.js */
 
-weApp.controller('WeDashboardController', ['WeMainService', 'WE_CONSTANTS', 'WeToolService', function(WeMainService, WE_CONSTANTS, WeToolService){
+weApp.controller('WeDashboardController', ['WeMainService', 'WE_CONSTANTS', 'WeToolService', 'WeBackendService', function(WeMainService, WE_CONSTANTS, WeToolService, WeBackendService){
   /* Private variables */
 
   var self = this;
@@ -106,6 +106,9 @@ weApp.controller('WeDashboardController', ['WeMainService', 'WE_CONSTANTS', 'WeT
     self.lockdown.status = true;
     console.log("Sending to the backend:");
     console.log(self.eventDetails);
+    WeBackendService.commitToBackend(self.eventDetails, function(result){
+      console.log(result);
+    });
   };
 
   /* Initiation */

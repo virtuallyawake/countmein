@@ -4,7 +4,7 @@ weApp.constant("WE_CONSTANTS", (function(){
 
   /* These are defined privately first, because they are required lateron in the public declaraions */
 
-  var BACKEND_BASEPATH = 'http://www.devwe.dev/';
+  var BACKEND_BASEPATH = 'http://localhost:3000';
 
   var PAGES = {
 
@@ -34,7 +34,7 @@ weApp.constant("WE_CONSTANTS", (function(){
 
     /* These are all the backend call configurations */
     BACKEND: {
-
+      COMMIT_TO_BACKEND: { NAME: 'commitToBackend', URL: BACKEND_BASEPATH + '/api/event', POST: [ 'newEvent' ], RESULT: DEFAULT_RESULT },
     },
 
     /* Routing configurations */

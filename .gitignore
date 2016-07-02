@@ -1,7 +1,8 @@
 node_modules
 bower_components
 dist
+./backend/public/core/js/app-non-uglified.js
+./backend/public/core/js/app.js
 
 # Ignore all emacs backup files
 *~
-
