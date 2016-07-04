@@ -1,2 +1,2 @@
 exports.User = require('./user');
-//exports.Event = require('./event');
+exports.Event = require('./event');
