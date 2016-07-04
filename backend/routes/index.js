@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 router.post('/api/event', function(req, res) {
   console.dir(req.body);
   res.send({
-    status: success,
+    status: "success",
     data: "data"
   });
 });
