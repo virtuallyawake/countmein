@@ -8,10 +8,13 @@
 @import 'ie10-viewport-bug-workaround';
 
 // For the components
-@import '../../components/tabs/tabs.scss';
-@import '../../components/table/table.scss';
-@import '../../components/input-group/input-group.scss';
-@import '../../components/d3-lines/d3-lines.scss';
+@import '../../components/tabs/tabs';
+@import '../../components/table/table';
+@import '../../components/input-group/input-group';
+@import '../../components/d3-lines/d3-lines';
+
+// For the views
+@import '../../event/event';
 
 // Declarations
 
@@ -20,13 +23,13 @@
   color: $we-black;
 }
 
-.l-we-overlay{
-  top: 0;
-  left: 0;
-  right: 0;
+.l-we-overlay {
   bottom: 0;
+  left: 0;
+  padding-top: 16%;
   position: fixed;
-  padding-top:16%;
+  right: 0;
+  top: 0;
 }
 
 .we-view-loading {

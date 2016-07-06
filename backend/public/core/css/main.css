@@ -7554,18 +7554,30 @@ body {
   stroke: #ddd;
 }
 
+.we-event-attending-yes {
+  color: #0f0;
+}
+
+.we-event-attending-no {
+  color: #f00;
+}
+
+.we-event-attending-undecided {
+  color: #000;
+}
+
 .we-overlay {
   background: #fff;
   color: #000;
 }
 
 .l-we-overlay {
-  top: 0;
-  left: 0;
-  right: 0;
   bottom: 0;
-  position: fixed;
+  left: 0;
   padding-top: 16%;
+  position: fixed;
+  right: 0;
+  top: 0;
 }
 
 .we-view-loading {

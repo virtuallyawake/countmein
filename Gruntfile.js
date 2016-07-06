@@ -116,6 +116,7 @@ module.exports = function(grunt) {
               'backend/public/node_modules/ng-file-upload/dist/ng-file-upload.min.js',
               'backend/public/node_modules/ng-toast/dist/ngToast.min.js',
               'backend/public/node_modules/d3/d3.min.js',
+              'backend/public/node_modules/chart.js/dist/Chart.bundle.js',
               'backend/public/core/js/ie10-viewport-bug-workaround.js',
             ],
             dest: 'backend/public/core/js/vendor.js'
@@ -140,10 +141,12 @@ module.exports = function(grunt) {
               'backend/public/components/input-group/input-group-directive.js',
               'backend/public/components/table/table-directive.js',
               'backend/public/components/d3-lines/d3-lines-directive.js',
+              'backend/public/components/pie-chart/pie-chart-directive.js',
 
               'backend/public/dashboard/dashboard-controller.js',
-              'backend/public/attend/attend-controller.js'
-
+              'backend/public/attend/attend-controller.js',
+              'backend/public/event/event-controller.js',
+              'backend/public/extra-invitations/extra-invitations-controller.js'
             ],
 
         dest: 'backend/public/core/js/app-non-uglified.js'
@@ -197,6 +200,8 @@ module.exports = function(grunt) {
                 'backend/public/main/*.js',
                 'backend/public/dashboard/*.js',
                 'backend/public/attend/*.js',
+                'backend/public/event/*.js',
+                'backend/public/extra-invitations/*.js',
                 'backend/public/not-allowed/*.js',
                 'backend/public/dev-resources/**/*.js' ],
 

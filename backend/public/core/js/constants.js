@@ -12,6 +12,8 @@ weApp.constant("WE_CONSTANTS", (function(){
 
     DASHBOARD: { ID: 0, TITLE: "New event" },
     ATTEND: { ID: 1, TITLE: "Attend the event" },
+    EVENT: { ID: 2, TITLE: "Event details" },
+    EXTRA_INVITATIONS: { ID: 3, TITLE: "Invite more people" },
 
     DEFAULT: { ID: 0, TITLE: "New event" }
   };
@@ -39,7 +41,8 @@ weApp.constant("WE_CONSTANTS", (function(){
       GET_EVENT_DETAILS: { NAME: 'getEventDetails', URL: BACKEND_BASEPATH + '/api/event', METHOD: "get", PARAMETERS: [ 'eventId' ], RESULT: DEFAULT_RESULT },
       GET_PARTICIPANTS: { NAME: 'getParticipants', URL: BACKEND_BASEPATH + '/api/participants', METHOD: "get", PARAMETERS: [ 'eventId' ], RESULT: DEFAULT_RESULT },
       GET_PARTICIPANT_DETAILS: { NAME: 'getParticipantDetails', URL: BACKEND_BASEPATH + '/api/participant', METHOD: "get", PARAMETERS: [ 'eventId', 'participantId' ], RESULT: DEFAULT_RESULT },
-      UPDATE_PARTICIPANT_DETAILS: { NAME: 'updateParticipantDetails', URL: BACKEND_BASEPATH + '/api/participant', METHOD: "post", PARAMETERS: [ 'eventId', 'participantId', 'participant' ], RESULT: DEFAULT_RESULT }
+      UPDATE_PARTICIPANT_DETAILS: { NAME: 'updateParticipantDetails', URL: BACKEND_BASEPATH + '/api/participant', METHOD: "post", PARAMETERS: [ 'eventId', 'participantId', 'participant' ], RESULT: DEFAULT_RESULT },
+      ADD_PARTICIPANTS: { NAME: 'addParticipants', URL: BACKEND_BASEPATH + '/api/participants', METHOD: "post", PARAMETERS: [ 'eventId', 'participants' ], RESULT: DEFAULT_RESULT }
     },
 
     /* Routing configurations */
@@ -47,6 +50,8 @@ weApp.constant("WE_CONSTANTS", (function(){
       /* General */
       { NAME: 'dashboard', STATE_CONFIG: [ '/dashboard', 'dashboard/dashboard.html', 'WeDashboardController as weDashboardCtrl', PAGES.DASHBOARD.ID, PAGES.DASHBOARD.TITLE, false, 'page' ] },
       { NAME: 'attend', STATE_CONFIG: [ '/attend/:eventId/:participantId', 'attend/attend.html', 'WeAttendController as weAttendCtrl', PAGES.ATTEND.ID, PAGES.ATTEND.TITLE, false, 'page' ] },
+      { NAME: 'event', STATE_CONFIG: [ '/event/:eventId', 'event/event.html', 'WeEventController as weEventCtrl', PAGES.EVENT.ID, PAGES.EVENT.TITLE, false, 'page' ] },
+      { NAME: 'extra-invitations', STATE_CONFIG: [ '/extra-invitations/:eventId', 'extra-invitations/extra-invitations.html', 'WeExtraInvitationsController as weExtraInvitationsCtrl', PAGES.EXTRA_INVITATIONS.ID, PAGES.EXTRA_INVITATIONS.TITLE, false, 'page' ] },
     ],
 
     /* This is a collection of what right is required for what (sub)view */

@@ -44,9 +44,9 @@ weApp.controller('WeDashboardController', ['WeMainService', 'WE_CONSTANTS', 'WeT
       displayedPages: 4
     },
     keys: {
-      firstName: { heading: "First name", styling: "width:26%;", sorting: true, colEditType: "string", url: false },
-      lastName: { heading: "Last name", styling: "width:26%;", sorting: true, colEditType: "string", url: false},
-      email: { heading: "email", styling: "width:26%;", sorting: true, colEditType: "email", url: false },
+      firstName: { heading: "First name", styling: "width:26%;", sorting: true, colEditType: "string", type: "plain" },
+      lastName: { heading: "Last name", styling: "width:26%;", sorting: true, colEditType: "string", type: "plain"},
+      email: { heading: "email", styling: "width:26%;", sorting: true, colEditType: "email", type: "plain" },
     }
   };
 

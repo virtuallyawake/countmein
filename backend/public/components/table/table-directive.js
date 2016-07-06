@@ -3,27 +3,27 @@
 weApp.directive('weTable', ['WeToolService', '$interval', function(WeToolService, $interval){
   return {
     template:
-      '<div class="we-table-wrapper" >' +
+      '<div class="we-table-wrapper id={{customId}}" >' +
         '<div st-table="displayedCollection" st-safe-src="targetObject">' +
 
           /* Smartphone / tablet version */
           '<div class="we-table-xs we-table-sm visible-xs visible-sm">' +
 
             /* Table */
-            '<table class="table table-striped">' +
+            '<table class="we-table table table-striped">' +
 
               '<thead>' +
 
                 /* Heading */
                 '<tr ng-if="options.title !== \'\' ">' +
-                  '<th>' +
+                  '<th colspan=999>' +
                     '{{options.title}}' +
                   '</th>' +
                 '</tr>' +
 
                 /* Search */
                 '<tr>' +
-                  '<th>' +
+                  '<th colspan=999>' +
                     '<div ng-if="options.globalSearch === true" class="row">'+
                       '<div class="col-xs-12">' +
                          '<input ng-disabled="lockdown[lockdownKey] === true" st-search placeholder="Zoek..." class="input-sm form-control" type="search"/>' +
@@ -37,6 +37,12 @@ weApp.directive('weTable', ['WeToolService', '$interval', function(WeToolService
               /* Body */
               '<tbody>' +
                 '<tr ng-repeat="row in displayedCollection track by $index">' +
+
+                  /* Checkbox if so desired */
+                  '<td ng-if="options.selectable === true" class="we-table-select-cell">' +
+                    '<input type="checkbox" ng-model="checks[targetObject.indexOf(row)]" />' +
+                  '</td>' +
+
                   '<td>' +
                     '<we-input-group  edit-mode="{{targetObject.indexOf(row) == rowBeingEdited}}" ' +
                                       'keys="keys" ' +
@@ -66,7 +72,7 @@ weApp.directive('weTable', ['WeToolService', '$interval', function(WeToolService
 
             /* Footer */
             '<div ng-if="options.pagination" class="text-center">' +
-              '<div st-pagination="" st-items-by-page="options.itemsByPage" st-displayed-pages="options.displayedPages"></div>' +
+              '<div st-pagination="" st-items-by-page="options.itemsByPage" st-displayed-pages="options.displayedPages" st-template="components/table/templates/pagination.custom.html"></div>' +
             '</div>' +
 
           '</div>' +
@@ -74,12 +80,12 @@ weApp.directive('weTable', ['WeToolService', '$interval', function(WeToolService
           /* Laptop / desktop version */
           '<div class="we-table-md we-table-lg visible-md visible-lg">' +
             '<div class="we-table-body-wrapper {{options.scrollable === true ? \'we-table-scrollable\' : \'\' }}">' +
-              '<table class="table table-striped">' +
+              '<table class="we-table table table-striped">' +
 
                 /* Heading */
                 '<thead>' +
                   '<tr>' +
-                    '<th ng-if="options.selectable === true">' +
+                    '<th ng-if="options.selectable === true" class="we-table-select-cell">' +
                     '</th>' +
                     '<th ng-repeat="(key, value) in keys" st-class-ascent="we-table-sort-ascent" st-class-descent="we-table-sort-descent" ng-class="{\'we-table-sortable-heading\': value.sorting === true }" st-sort="{{ value.sorting === true ? key : null }}" style="{{value.styling}}">' +
                       '{{value.heading}}' +
@@ -102,18 +108,24 @@ weApp.directive('weTable', ['WeToolService', '$interval', function(WeToolService
                   '<tr ng-repeat="row in displayedCollection track by $index">' +
 
                     /* Checkbox if so desired */
-                    '<td ng-if="options.selectable === true">' +
+                    '<td ng-if="options.selectable === true" class="we-table-select-cell">' +
                       '<input type="checkbox" ng-model="checks[targetObject.indexOf(row)]" />' +
                     '</td>' +
 
                     /* Normal mode */
-                    '<td ng-if="targetObject.indexOf(row) != rowBeingEdited" ng-repeat="(key, value) in keys" style="{{value.stying}}">' +
+                    '<td ng-if="targetObject.indexOf(row) != rowBeingEdited" ng-repeat="(key, value) in keys" class="td-class-{{removeSpace(key)}}" style="{{value.styling}}">' +
                       /* Check if it's a link or not */
-                      '<span ng-if="value.url === false">' +
+                      '<span ng-if="value.type === \'plain\'">' +
                         '{{row[key]}}' +
                       '</span>' +
-                      '<span ng-if="value.url === true">' +
-                        '<a href="{{value.urlFunction(row)}}">{{row[key]}}</a>' +
+                      '<span ng-if="value.type === \'url\'">' +
+                        '<a href="{{value.urlFunction(row)}}" {{value.targetBlank === true ? "target=\"_blank\"" : null}}>{{row[key]}}</a>' +
+                      '</span>' +
+                      '<span ng-if="value.type == \'date\'">' +
+                        '<span style="display:none;">{{row[key]}}</span>{{ value.dateFunction(row[key]) }}' +
+                      '</span>' +
+                      '<span ng-if="value.type == \'customHtml\'">' +
+                        '<span ng-bind-html="value.customHtmlFunction(row[key])"></span>' +
                       '</span>' +
                     '</td>' +
 
@@ -140,7 +152,7 @@ weApp.directive('weTable', ['WeToolService', '$interval', function(WeToolService
                     '</td>' +
 
                     /* Last optional column for edit, delete, save and undo buttons */
-                    '<td ng-if="options.editEnabled || options.deleteEnabled" class="text-right">' +
+                    '<td ng-if="options.editEnabled || options.deleteEnabled">' +
                       '<span ng-if="targetObject.indexOf(row) != rowBeingEdited">' +
                         '<button ng-disabled="lockdown[lockdownKey] === true" ng-if="options.editEnabled" class="btn btn-primary l-we-table-btn" ng-click="editRow(row)">Edit</button>' +
                         '<button ng-disabled="lockdown[lockdownKey] === true" ng-if="options.deleteEnabled" class="btn btn-danger l-we-table-btn" ng-click="deleteRow(row)">Delete</button>' +
@@ -157,7 +169,7 @@ weApp.directive('weTable', ['WeToolService', '$interval', function(WeToolService
 
             /* Footer */
             '<div ng-if="options.pagination" class="text-center">' +
-              '<div st-pagination="" st-items-by-page="options.itemsByPage" st-displayed-pages="options.displayedPages"></div>' +
+              '<div st-pagination="" st-items-by-page="options.itemsByPage" st-displayed-pages="options.displayedPages" st-template="components/table/templates/pagination.custom.html"></div>' +
             '</div>' +
           '</div>' + /* End div containing classes we-table-md we-table-lg */
         '</div>' + /* End div containing st-table="displayedCollection" st-safe-src="targetObject" */
@@ -172,13 +184,18 @@ weApp.directive('weTable', ['WeToolService', '$interval', function(WeToolService
       saveObject: '=',
       deleteObject: '=',
       saveFunction: '@',
-      deleteFunction: '@'
+      deleteFunction: '@',
+      customId: '@'
     },
     link: function(scope, element, attrs){
 
       scope.rowBeingEdited = -1;
       scope.editingRow = {};
       scope.checks = [];
+
+      scope.removeSpace = function(e){
+        return e.replace(/\s/g, '-');
+      };
 
       scope.editRow = function(row){
         scope.editingRow = angular.copy(row);
