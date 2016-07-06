@@ -1,0 +1,59 @@
+<a ng-href="#/event/{{weExtraInvitationsCtrl.eventId}}"><i class="fa fa-long-arrow-left"></i> Back to event overview</a>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-8">
+    <h2>1. Add a list of people</h2>
+    <div class="panel we-panel-default">
+      <div class="panel-body">
+
+        <fieldset class="form-group">
+          <div id="participant" class="row">
+            <div class="col-xs-12 col-sm-4">
+              <label for="participantFirstName">First name</label>
+              <input ng-disabled="weExtraInvitationsCtrl.lockdown.status === true" type="text" ng-model="weExtraInvitationsCtrl.newParticipant.firstName" class="form-control" id="participantFirstName" placeholder="First name">
+            </div>
+            <div class="col-xs-12 col-sm-4">
+              <label for="participantLastName">Last name</label>
+              <input ng-disabled="weExtraInvitationsCtrl.lockdown.status === true" type="text" ng-model="weExtraInvitationsCtrl.newParticipant.lastName" class="form-control" id="participantLastName" placeholder="Last name">
+            </div>
+            <div class="col-xs-12 col-sm-4">
+              <label for="participantEmail">Email</label>
+              <input ng-disabled="weExtraInvitationsCtrl.lockdown.status === true" type="email" ng-model="weExtraInvitationsCtrl.newParticipant.email" class="form-control" id="participantEmail" placeholder="email">
+            </div>
+          </div>
+        </fieldset>
+        <div class="text-right">
+          <button ng-disabled="weExtraInvitationsCtrl.lockdown.status === true || weExtraInvitationsCtrl.checkParticipantFields()" ng-click="weExtraInvitationsCtrl.addParticipant()" class="btn btn-primary">Add participant</button>
+        </div>
+
+        <div ng-if="weExtraInvitationsCtrl.eventDetails.newParticipants.length === 0" class="text-center">
+          <i>Add participants</i>
+        </div>
+        <div ng-if="weExtraInvitationsCtrl.eventDetails.newParticipants.length > 0">
+          <we-table options="weExtraInvitationsCtrl.tableData.options"
+                    keys="weExtraInvitationsCtrl.tableData.keys"
+                    target-object="weExtraInvitationsCtrl.eventDetails.newParticipants"
+                    select-placeholder=""
+                    lockdown="weExtraInvitationsCtrl.lockdown"
+                    lockdown-key="status"
+                    save-object="weExtraInvitationsCtrl"
+                    save-function="updateEntry"
+                    delete-object="weExtraInvitationsCtrl"
+                    delete-function="deleteEntry">
+          </we-table>
+        </div>
+
+      </div> <!-- End panel-body -->
+    </div> <!-- End panel -->
+  </div> <!-- End col -->
+
+  <div class="col-xs-12 col-sm-4">
+    <h2>2. Submit the invites</h2>
+    <div class="panel we-panel-default">
+      <div class="panel-body">
+        <p>Add the people on this list to the list of invitees for the event.</p>
+        <button ng-disabled="weExtraInvitationsCtrl.checkAllFields() || weExtraInvitationsCtrl.lockdown.status === true" ng-click="weExtraInvitationsCtrl.processInvitations()" class="btn btn-primary btn-lg">Send RSVP invitations</button>
+      </div>
+    </div>
+  </div>
+</div>
