@@ -114,7 +114,7 @@ weApp.controller('WeDashboardController', ['WeMainService', 'WE_CONSTANTS', 'WeT
 
   self.processInvitations = function(){
     self.lockdown.status = true;
-    WeBackendService.commitToBackend(self.eventDetails, function(result){
+    WeBackendService.commitToBackend(self.eventDetails, '', function(result){
       console.log(result);
       if(result !== false){
         self.returnedEventId = result.eventId;
