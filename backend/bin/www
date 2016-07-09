@@ -8,8 +8,7 @@ var app = require('../app');
 var debug = require('debug')('backend:server');
 var http = require('http');
 var mongoose = require('mongoose');
-var models = require('../models');
-var User = mongoose.model('User');
+//var models = require('../models');
 
 // Add mongoose query and promise support to express
 require('express-mongoose');
@@ -33,21 +32,6 @@ var server = http.createServer(app);
 mongoose.set('debug', true);
 mongoose.connect('mongodb://23.251.140.183:80/my_database', function(err) {
   if (err) throw err;
-
-  // Create a user
-  var user = {
-    _id : "daniela@codersco.com",
-    name : {
-       first : "Daniela",
-       last  : "Gavidia"
-    }
-  };
-  User.create(user, function(err, newUser) {
-    if (err)
-      return console.dir(err);
-
-    console.dir(newUser);
-  });
   
   server.listen(port);
   server.on('error', onError);				    
