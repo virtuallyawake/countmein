@@ -46,9 +46,12 @@ weApp.factory('WeBackendService', ['$http', 'WE_CONSTANTS', function($http, WE_C
   function createFunction(backend){
     return function(){
 
-      var urlExtension = arguments[arguments.length - 1];
-      var callback = arguments[arguments.length - 2];
+      var urlExtension = arguments[arguments.length - 2];
+      var callback = arguments[arguments.length - 1];
       var parameters = {};
+
+      console.log("url extension");
+      console.log(urlExtension);
 
       for(var j = 0; j < arguments.length - 1; j++){
         parameters[backend.PARAMETERS[j]] = arguments[j];
