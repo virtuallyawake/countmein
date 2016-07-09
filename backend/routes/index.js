@@ -21,9 +21,10 @@ router.get('/api/event/:eventId', function(req, res) {
     });
 });
 
-router.post('/api/event', function(req, res) {
+router.post('/api/event', function(req, res, next) {
     console.dir(req.body);
     var newEvent = req.body.newEvent;
+    console.dir(newEvent.participants);
     var organizer = {
 	_id : newEvent.organiser.email,
 	name : {
@@ -39,7 +40,8 @@ router.post('/api/event', function(req, res) {
 	    organizer : organizer._id,
 	    name : newEvent.name,
 	    date : newEvent.date,
-	    description : newEvent.description
+	    description : newEvent.description,
+	    participants : newEvent.participants.map(function(participant) {return participant.email;})
 	});
 	event.save(function(err, evt) {
 	    if (err)
