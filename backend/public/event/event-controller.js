@@ -13,20 +13,7 @@ weApp.controller('WeEventController', ['WeMainService', 'WE_CONSTANTS', 'WeToolS
   /* Public variables */
 
   self.lockdown = { status: false };
-  self.eventDetails = {
-    name: "My Event",
-    participants: [
-      { firstName: "Sarah", lastName: "Connor", email: "sarah@connor.com", attending: ATTENDING_STATUS.YES },
-      { firstName: "John", lastName: "Connor", email: "john@connor.com", attending: ATTENDING_STATUS.NO },
-      { firstName: "Jane", lastName: "Addams", email: "jane@addams.com", attending: ATTENDING_STATUS.YES },
-      { firstName: "Chris", lastName: "Connor", email: "chris@connor.com", attending: ATTENDING_STATUS.YES },
-      { firstName: "Anne", lastName: "Connor", email: "anne@connor.com", attending: ATTENDING_STATUS.NO },
-      { firstName: "Seth", lastName: "Addams", email: "seth@addams.com", attending: ATTENDING_STATUS.NO },
-      { firstName: "Linda", lastName: "Connor", email: "linda@connor.com", attending: ATTENDING_STATUS.YES },
-      { firstName: "Sophie", lastName: "Connor", email: "sophie@connor.com", attending: ATTENDING_STATUS.UNDECIDED },
-      { firstName: "Jack", lastName: "Addams", email: "jack@addams.com", attending: ATTENDING_STATUS.UNDECIDED },
-    ]
-  };
+  self.eventDetails = {};
 
   self.message = "";
 
@@ -120,6 +107,15 @@ weApp.controller('WeEventController', ['WeMainService', 'WE_CONSTANTS', 'WeToolS
 
   /* Initiation */
 
-  WeMainService.page.initialLoadingState = WE_CONSTANTS.LOADING_STATES.DONE;
+  WeBackendService.getEventDetails(eventId, function(result){
+    if(result !== false)
+    {
+      self.eventDetails = result;
+      WeMainService.page.initialLoadingState = WE_CONSTANTS.LOADING_STATES.DONE;
+    }
+    else {
+      WeMainService.page.initialLoadingState = WE_CONSTANTS.LOADING_STATES.ERROR;
+    }
+  });
 
 }]);

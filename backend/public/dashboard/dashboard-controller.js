@@ -59,6 +59,7 @@ weApp.controller('WeDashboardController', ['WeMainService', 'WE_CONSTANTS', 'WeT
   };
 
   self.state = self.LOCAL_CONSTANTS.STATES.FORM;
+  self.returnedEventId = '';
 
   /* Public functions */
 
@@ -113,11 +114,15 @@ weApp.controller('WeDashboardController', ['WeMainService', 'WE_CONSTANTS', 'WeT
 
   self.processInvitations = function(){
     self.lockdown.status = true;
-    console.log("Sending to the backend:");
-    console.log(self.eventDetails);
     WeBackendService.commitToBackend(self.eventDetails, function(result){
       console.log(result);
-      self.state = self.LOCAL_CONSTANTS.STATES.SUCCESS;
+      if(result !== false){
+        self.returnedEventId = result.eventId;
+        self.state = self.LOCAL_CONSTANTS.STATES.SUCCESS;
+      }
+      else {
+        self.state = self.LOCAL_CONSTANTS.STATES.ERROR;
+      }
     });
   };
 
