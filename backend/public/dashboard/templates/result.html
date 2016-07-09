@@ -1,6 +1,6 @@
 <div ng-if="weDashboardCtrl.state == weDashboardCtrl.LOCAL_CONSTANTS.STATES.SUCCESS" class="alert alert-success" role="alert">
-  <p>Great! Your invitations have been sent. You can track the reponse of your invitees here:</p>
-  <p><a href="#">Your link</a></p>
+  <p>Great! Your invitations have been sent. Check your e-mail for a confirmation.</p>
+  <p>You can track the reponse of your invitees <a href="#/event/{{weDashboardCtrl.returnedEventId}}">here</a></p>
 </div>
 
 <div ng-if="weDashboardCtrl.state == weDashboardCtrl.LOCAL_CONSTANTS.STATES.ERROR">
