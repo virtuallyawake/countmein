@@ -41,7 +41,7 @@ router.post('/api/event', function(req, res, next) {
 	    name : newEvent.name,
 	    date : newEvent.date,
 	    description : newEvent.description,
-	    participants : newEvent.participants.map(function(participant) {return participant.email;})
+	    participants : newEvent.participants
 	});
 	event.save(function(err, evt) {
 	    if (err)
