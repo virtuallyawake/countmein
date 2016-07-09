@@ -17,11 +17,7 @@ weApp.factory('WeBackendService', ['$http', 'WE_CONSTANTS', function($http, WE_C
       console.log(parameters);
     }
 
-    return $http[method](requestedUrl, $.param(parameters), {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-    }).then(function(result){
+    return $http[method](requestedUrl, parameters) .then(function(result){
       if(WE_CONSTANTS.DEBUG.BACKEND){
         console.log("Response for backend request '" + requestedUrl + "':");
         console.log(result);
