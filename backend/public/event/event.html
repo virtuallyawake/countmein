@@ -4,7 +4,9 @@
     <h2>What's the score?</h2>
     <div class="panel we-panel-default">
       <div class="panel-body">
-        <we-pie-chart canvas-id="inviteePieChart" distribution="weEventCtrl.distribution"></we-pie-chart>
+        <span ng-if="weEventCtrl.flags.pieChartDataLoaded">
+          <we-pie-chart canvas-id="inviteePieChart" distribution="weEventCtrl.distribution"></we-pie-chart>
+        </span>
       </div>
     </div>
 

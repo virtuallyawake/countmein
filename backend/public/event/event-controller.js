@@ -36,8 +36,12 @@ weApp.controller('WeEventController', ['WeMainService', 'WE_CONSTANTS', 'WeToolS
       attending: { heading: "Attending status", styling: "width:20%", sorting: true, type: "customHtml", customHtmlFunction: decidedStatus}
     }
   };
+  self.flags  = {
+    pieChartDataLoaded: false
+  };
 
-  self.distribution = {
+  function initiateDistrubution(callback){
+    self.distribution = {
       type: 'pie',
       data: {
           datasets: [{
@@ -57,7 +61,11 @@ weApp.controller('WeEventController', ['WeMainService', 'WE_CONSTANTS', 'WeToolS
       options: {
           responsive: true
       }
-  };
+    };
+
+    callback();
+
+  } /* End function initiateDistrubution */
 
   /* Private functions */
 
@@ -111,6 +119,9 @@ weApp.controller('WeEventController', ['WeMainService', 'WE_CONSTANTS', 'WeToolS
     if(result !== false)
     {
       self.eventDetails = result;
+      initiateDistrubution(function(){
+        self.flags.pieChartDataLoaded = true;
+      });
       WeMainService.page.initialLoadingState = WE_CONSTANTS.LOADING_STATES.DONE;
     }
     else {
