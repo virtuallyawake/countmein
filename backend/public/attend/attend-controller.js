@@ -26,7 +26,7 @@ weApp.controller('WeAttendController', ['WeMainService', 'WE_CONSTANTS', 'WeTool
   /* Private functions */
 
   function commitToBackend(message){
-    /*WeBackendService.updateParticipantDetails(self.entry, attending, function(result){
+    /*WeBackendService.updateParticipantDetails(self.entry, attending, '', function(result){
       console.log(result);
       self.message = message;
       self.lockdown.status = true;
@@ -51,10 +51,10 @@ weApp.controller('WeAttendController', ['WeMainService', 'WE_CONSTANTS', 'WeTool
 
   /* Initiation */
 
-  /*WeBackendService.getEventDetails(eventId, function(result){
+  /*WeBackendService.getEventDetails(eventId, '', function(result){
     self.eventDetails = result.eventDetails;
   }).then(function(){
-    WeBackendService.getParticipantDetails(participantId, function(result){
+    WeBackendService.getParticipantDetails(participantId, '', function(result){
       self.participantDetails = result.participantDetails;
       WeMainService.page.initialLoadingState = WE_CONSTANTS.LOADING_STATES.DONE;
     });

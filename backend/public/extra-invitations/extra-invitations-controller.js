@@ -61,7 +61,7 @@ weApp.controller('WeExtraInvitationsController', ['WeMainService', 'WE_CONSTANTS
 
   self.addParticipant = function(){
     var commit;
-    
+
     commit = angular.copy(self.newParticipant);
     self.eventDetails.newParticipants.push(commit);
 
@@ -112,7 +112,7 @@ weApp.controller('WeExtraInvitationsController', ['WeMainService', 'WE_CONSTANTS
     self.lockdown.status = true;
     console.log("Sending to the backend:");
     console.log(self.eventDetails);
-    WeBackendService.addParticipants(eventId, self.eventDetails.newParticipants, function(result){
+    WeBackendService.addParticipants(eventId, self.eventDetails.newParticipants, '', function(result){
       self.state = self.LOCAL_CONSTANTS.STATES.SUCCESS;
       self.lockdown.status = false;
       self.eventDetails.newParticipants = [];
@@ -135,6 +135,6 @@ weApp.controller('WeExtraInvitationsController', ['WeMainService', 'WE_CONSTANTS
 
   /* Initiation */
 
-  WeMainService.page.initialLoadingState = WE_CONSTANTS.LOADING_STATES.DONE;
+  WeBackendService.WeMainService.page.initialLoadingState = WE_CONSTANTS.LOADING_STATES.DONE;
 
 }]);

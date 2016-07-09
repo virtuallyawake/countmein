@@ -38,7 +38,7 @@ weApp.constant("WE_CONSTANTS", (function(){
     /* These are all the backend call configurations */
     BACKEND: {
       COMMIT_TO_BACKEND: { NAME: 'commitToBackend', URL: BACKEND_BASEPATH + '/api/event', METHOD: "post", PARAMETERS: [ 'newEvent' ], RESULT: DEFAULT_RESULT },
-      GET_EVENT_DETAILS: { NAME: 'getEventDetails', URL: BACKEND_BASEPATH + '/api/event', METHOD: "get", PARAMETERS: [ 'eventId' ], RESULT: DEFAULT_RESULT },
+      GET_EVENT_DETAILS: { NAME: 'getEventDetails', URL: BACKEND_BASEPATH + '/api/event/', METHOD: "get", PARAMETERS: [ 'eventId' ], RESULT: DEFAULT_RESULT },
       GET_PARTICIPANTS: { NAME: 'getParticipants', URL: BACKEND_BASEPATH + '/api/participants', METHOD: "get", PARAMETERS: [ 'eventId' ], RESULT: DEFAULT_RESULT },
       GET_PARTICIPANT_DETAILS: { NAME: 'getParticipantDetails', URL: BACKEND_BASEPATH + '/api/participant', METHOD: "get", PARAMETERS: [ 'eventId', 'participantId' ], RESULT: DEFAULT_RESULT },
       UPDATE_PARTICIPANT_DETAILS: { NAME: 'updateParticipantDetails', URL: BACKEND_BASEPATH + '/api/participant', METHOD: "post", PARAMETERS: [ 'eventId', 'participantId', 'participant' ], RESULT: DEFAULT_RESULT },
