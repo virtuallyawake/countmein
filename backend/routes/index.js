@@ -10,13 +10,25 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.get('/api/event/:eventId', function(req, res) {
+    var eventId = req.params.eventId;
+    console.log(eventId);
+    Event.findById(eventId, function(err, evt) {
+	if (err || !evt)
+	    return res.send({status: "error"});
+
+	res.json(evt);
+    });
+});
+
 router.post('/api/event', function(req, res) {
     console.dir(req.body);
+    var newEvent = req.body.newEvent;
     var organizer = {
-	_id : req.body['newEvent[organiser][email]'],
+	_id : newEvent.organiser.email,
 	name : {
-	    first : req.body['newEvent[organiser][firstName]'],
-	    last : req.body['newEvent[organiser][lastName]']
+	    first : newEvent.organiser.firstName,
+	    last : newEvent.organiser.lastName
 	}
     };
     User.update({_id: organizer._id}, {name : organizer.name}, {upsert: true, runValidators:true, setDefaultsOnInsert: true}, function(err, rawResponse) {
@@ -25,9 +37,9 @@ router.post('/api/event', function(req, res) {
 
 	var event = new Event({
 	    organizer : organizer._id,
-	    name : req.body['newEvent[name]'],
-	    date : req.body['newEvent[date]'],
-	    description : req.body['newEvent[description]']
+	    name : newEvent.name,
+	    date : newEvent.date,
+	    description : newEvent.description
 	});
 	event.save(function(err, evt) {
 	    if (err)
