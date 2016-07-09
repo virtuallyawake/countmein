@@ -6,7 +6,7 @@ var schema = mongoose.Schema({
     name : String,
     date : Date,
     description : String,
-    participants : [{type: String, ref: 'User'}]
+    participants : [{firstName: String, lastName: String, email: String, attending: Number}]
 });
 
 // Add createdDate property
