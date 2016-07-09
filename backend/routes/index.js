@@ -17,7 +17,10 @@ router.get('/api/event/:eventId', function(req, res) {
 	if (err || !evt)
 	    return res.send({status: "error"});
 
-	res.json(evt);
+	res.json({
+	    status : "success",
+	    data   : evt
+	});
     });
 });
 
