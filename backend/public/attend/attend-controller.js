@@ -13,12 +13,10 @@ weApp.controller('WeAttendController', ['WeMainService', 'WE_CONSTANTS', 'WeTool
 
   self.lockdown = { status: false };
 
-  self.eventDetails = {
-    name: "My Event"
-  };
+  self.eventDetails = {};
 
   self.participantDetails = {
-
+    attending: null
   };
 
   self.message = "";
@@ -26,13 +24,20 @@ weApp.controller('WeAttendController', ['WeMainService', 'WE_CONSTANTS', 'WeTool
   /* Private functions */
 
   function commitToBackend(message){
-    /*WeBackendService.updateParticipantDetails(self.entry, attending, '', function(result){
-      console.log(result);
-      self.message = message;
-      self.lockdown.status = true;
-    });*/
-    self.message = message;
     self.lockdown.status = true;
+    WeBackendService.updateParticipantStatus(self.participantDetails.attending, eventId + '/' + participantId, function(result){
+      console.log(result);
+
+      if(result !== false)
+      {
+        self.message = message;
+      }
+      else {
+        self.message = "Oops, something went wrong. Please try again.";
+      }
+
+      self.lockdown.status = false;
+    });
   }
 
   /* Public functions */
@@ -51,16 +56,18 @@ weApp.controller('WeAttendController', ['WeMainService', 'WE_CONSTANTS', 'WeTool
 
   /* Initiation */
 
-  /*WeBackendService.getEventDetails(eventId, '', function(result){
-    self.eventDetails = result.eventDetails;
-  }).then(function(){
-    WeBackendService.getParticipantDetails(participantId, '', function(result){
-      self.participantDetails = result.participantDetails;
-      WeMainService.page.initialLoadingState = WE_CONSTANTS.LOADING_STATES.DONE;
-    });
-  });*/
-
-  WeMainService.page.initialLoadingState = WE_CONSTANTS.LOADING_STATES.DONE;
-  console.log(eventId, participantId);
+  WeBackendService.getParticipantStatus(eventId + '/' + participantId, function(result){
+    if(result !== false)
+    {
+      self.participantDetails = result;
+      WeMainService.getEventDetails(eventId, function(result){
+        self.eventDetails = result;
+        WeMainService.page.initialLoadingState = WE_CONSTANTS.LOADING_STATES.DONE;
+      });
+    }
+    else {
+      WeMainService.page.initialLoadingState = WE_CONSTANTS.LOADING_STATES.ERROR;
+    }
+  });
 
 }]);
