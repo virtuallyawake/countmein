@@ -60,7 +60,7 @@ weApp.controller('WeAttendController', ['WeMainService', 'WE_CONSTANTS', 'WeTool
     if(result !== false)
     {
       self.participantDetails = result;
-      WeMainService.getEventDetails(eventId, function(result){
+      WeBackendService.getEventDetails(eventId, function(result){
         self.eventDetails = result;
         WeMainService.page.initialLoadingState = WE_CONSTANTS.LOADING_STATES.DONE;
       });

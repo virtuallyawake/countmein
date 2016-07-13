@@ -10,6 +10,25 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.get('/api/attend/:eventId/:participantId', function(req, res) {
+    var eventId = req.params.eventId;
+    var participantId = req.params.participantId;
+
+    res.json({
+	status : "success",
+	data : { attending : 1 }
+    });
+});
+
+router.post('/api/attend/:eventId/:participantId', function(req, res) {
+    var eventId = req.params.eventId;
+    var participantId = req.params.participantId;
+
+    res.json({
+	status : "success"
+    });
+});
+
 router.get('/api/event/:eventId', function(req, res) {
     var eventId = req.params.eventId;
     console.log(eventId);
