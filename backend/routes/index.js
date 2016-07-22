@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var models = require('../models');
 var User = models.User;
 var Event = models.Event;
+var ObjectId = mongoose.Types.ObjectId;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -13,20 +14,45 @@ router.get('/', function(req, res, next) {
 router.get('/api/attend/:eventId/:participantId', function(req, res) {
     var eventId = req.params.eventId;
     var participantId = req.params.participantId;
+    var pipeline = [
+	{
+	    $match : { "_id" : new ObjectId(eventId) }
+	},
+	{
+	    $unwind : "$participants"
+	},
+	{
+	    $match : { "participants._id" : new ObjectId(participantId) }
+	},
+	{
+	    $project : { email : "$participants.email", status : "$participants.attending" }
+	}
+    ];
 
-    res.json({
-	status : "success",
-	data : { attending : 1 }
-    });
+    Event.aggregate(pipeline, function(err, result) {
+	res.json({
+	    status : (!err) ? "success" : "error",
+	    data   : (!err) ? { attending : result[0].status } : null
+	});
+    })
 });
 
 router.post('/api/attend/:eventId/:participantId', function(req, res) {
     var eventId = req.params.eventId;
     var participantId = req.params.participantId;
+    var status = req.body.status;
+    var query = {
+	"_id" : new ObjectId(eventId),
+	"participants._id": new ObjectId(participantId)
+    };
 
-    res.json({
-	status : "success"
-    });
+    Event.update(query,
+		 {$set: {"participants.$.attending": status}},
+		 function(err) {
+		     res.json({
+			 status : (!err) ? "success" : "error"
+		     });
+		 });
 });
 
 router.get('/api/event/:eventId', function(req, res) {
