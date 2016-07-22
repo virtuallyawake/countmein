@@ -99,19 +99,6 @@ weApp.controller('WeDashboardController', ['WeMainService', 'WE_CONSTANTS', 'WeT
     return true;
   };
 
-  self.checkAllFields = function(){
-    if( self.eventDetails.organiser.firstName !== null && self.eventDetails.organiser.firstName !== '' &&
-        self.eventDetails.organiser.lastName !== null && self.eventDetails.organiser.lastName !== '' &&
-        self.eventDetails.organiser.email !== null && self.eventDetails.organiser.email !== '' &&
-        self.eventDetails.name !== null && self.eventDetails.name !== '' &&
-        self.eventDetails.date !== null && self.eventDetails.date !== '' && self.eventDetails.date !== 0 &&
-        self.eventDetails.description !== null && self.eventDetails.description !== '' &&
-        self.eventDetails.participants.length > 0)
-      return false;
-
-    return true;
-  };
-
   self.processInvitations = function(){
     self.lockdown.status = true;
     WeBackendService.commitToBackend(self.eventDetails, '', function(result){
