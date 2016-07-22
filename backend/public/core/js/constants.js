@@ -28,7 +28,7 @@ weApp.constant("WE_CONSTANTS", (function(){
 
     /* Toggle debug mode */
     DEBUG: {
-      BACKEND: false,
+      BACKEND: true,
       ROUTES: false
     },
 

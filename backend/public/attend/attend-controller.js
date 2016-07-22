@@ -62,6 +62,12 @@ weApp.controller('WeAttendController', ['WeMainService', 'WE_CONSTANTS', 'WeTool
       self.participantDetails = result;
       WeBackendService.getEventDetails(eventId, function(result){
         self.eventDetails = result;
+
+        var attending = self.participantDetails.attending;
+
+        if(self.participantDetails.attending !== 2)
+          self.message = "Currently you have indicated that you will " + (attending === 0 ? 'NOT ' : '') + "be attending.";
+
         WeMainService.page.initialLoadingState = WE_CONSTANTS.LOADING_STATES.DONE;
       });
     }

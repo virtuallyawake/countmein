@@ -113,10 +113,9 @@ weApp.controller('WeExtraInvitationsController', ['WeMainService', 'WE_CONSTANTS
     console.log("Sending to the backend:");
     console.log(self.eventDetails);
     WeBackendService.addParticipants(self.eventDetails.newParticipants, eventId, function(result){
-      self.state = self.LOCAL_CONSTANTS.STATES.SUCCESS;
       self.lockdown.status = false;
       self.eventDetails.newParticipants = [];
-      if(result.status == "success"){
+      if(result !== false){
         ngToast.success({
           content: "Your list has been updated",
           animation: 'fade',
