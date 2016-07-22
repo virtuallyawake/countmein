@@ -11,6 +11,17 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.post('/api/participants/:eventId', function(req, res) {
+    var participants = req.body.participants;
+
+    if (!(participants instanceof Array)) {
+	console.log("Didn't get an array of participants");
+	return res.json({status: "error"});
+    }
+
+    return res.json({status: "success"});
+});
+
 router.get('/api/attend/:eventId/:participantId', function(req, res) {
     var eventId = req.params.eventId;
     var participantId = req.params.participantId;
