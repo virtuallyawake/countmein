@@ -43,7 +43,7 @@ weApp.constant("WE_CONSTANTS", (function(){
       GET_PARTICIPANT_STATUS: {NAME: 'getParticipantStatus', URL: BACKEND_BASEPATH + '/api/attend/', METHOD: "get", PARAMETERS: [], RESULT: DEFAULT_RESULT },
       UPDATE_PARTICIPANT_STATUS: { NAME: 'updateParticipantStatus', URL: BACKEND_BASEPATH + '/api/attend/', METHOD: "post", PARAMETERS: [ 'status' ], RESULT: DEFAULT_RESULT },
 
-      ADD_PARTICIPANTS: { NAME: 'addParticipants', URL: BACKEND_BASEPATH + '/api/participants', METHOD: "post", PARAMETERS: [ 'eventId', 'participants' ], RESULT: DEFAULT_RESULT }
+      ADD_PARTICIPANTS: { NAME: 'addParticipants', URL: BACKEND_BASEPATH + '/api/participants/', METHOD: "post", PARAMETERS: [ 'participants' ], RESULT: DEFAULT_RESULT }
     },
 
     /* Routing configurations */

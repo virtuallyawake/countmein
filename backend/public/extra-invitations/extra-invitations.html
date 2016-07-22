@@ -52,7 +52,7 @@
     <div class="panel we-panel-default">
       <div class="panel-body">
         <p>Add the people on this list to the list of invitees for the event.</p>
-        <button ng-disabled="weExtraInvitationsCtrl.checkAllFields() || weExtraInvitationsCtrl.lockdown.status === true" ng-click="weExtraInvitationsCtrl.processInvitations()" class="btn btn-primary btn-lg">Send RSVP invitations</button>
+        <button ng-disabled="weExtraInvitationsCtrl.eventDetails.newParticipants.length === 0 || weExtraInvitationsCtrl.lockdown.status === true" ng-click="weExtraInvitationsCtrl.processInvitations()" class="btn btn-primary btn-lg">Send RSVP invitations</button>
       </div>
     </div>
   </div>
