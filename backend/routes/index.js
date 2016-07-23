@@ -12,6 +12,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/api/participants/:eventId', function(req, res) {
+    var eventId = req.params.eventId;
     var participants = req.body.participants;
 
     if (!(participants instanceof Array)) {
@@ -19,6 +20,12 @@ router.post('/api/participants/:eventId', function(req, res) {
 	return res.json({status: "error"});
     }
 
+    Event.update({"_id" : new ObjectId(eventId)},
+		 { $addToSet: { participants: { $each: participants } } },
+		 function(err, raw) {
+		     console.log(err);
+		     console.log(raw)
+		 });
     return res.json({status: "success"});
 });
 
