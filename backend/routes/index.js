@@ -24,9 +24,9 @@ router.post('/api/participants/:eventId', function(req, res) {
 		 { $addToSet: { participants: { $each: participants } } },
 		 function(err, raw) {
 		     console.log(err);
-		     console.log(raw)
+
+		     return res.json({status: "success"});
 		 });
-    return res.json({status: "success"});
 });
 
 router.get('/api/attend/:eventId/:participantId', function(req, res) {
@@ -113,6 +113,8 @@ router.post('/api/event', function(req, res, next) {
 	    if (err)
 		return next(err);
 
+	    // Email organizer
+	    Event.emailOrganizer(organizer);
 	    res.send({
 		status: "success",
 		data: {

@@ -5,6 +5,7 @@ backend/public/core/js/app-non-uglified.js
 backend/public/core/js/app.js
 backend/public/core/js/vendor.js
 npm-debug.log
+backend/config.json
 
 # Ignore all emacs backup files
 *~
