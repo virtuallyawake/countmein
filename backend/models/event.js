@@ -15,9 +15,9 @@ var schema = mongoose.Schema({
 // Add createdDate property
 schema.plugin(createdDate);
 
-schema.statics.emailOrganizer = function(organizer) {
-    var templatePath = "../email-templates/mailgun-template.html";
-    var templateData = { organizer: organizer };
+schema.statics.emailOrganizer = function(organizer, event) {
+    var templatePath = "./routes/inlined/organizer.html";
+    var templateData = { organizer: organizer, event: event };
     var htmlContent = ejs.renderFile(templatePath, templateData, function(err, htmlString) {
 	if (err)
 	    return console.log(err);

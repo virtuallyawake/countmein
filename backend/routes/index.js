@@ -113,12 +113,17 @@ router.post('/api/event', function(req, res, next) {
 	    if (err)
 		return next(err);
 
+	    var eventId = evt._id.toString();
+	    var eventDetails = {
+		name : newEvent.name,
+		id   : eventId
+	    };
 	    // Email organizer
-	    Event.emailOrganizer(organizer);
+	    Event.emailOrganizer(organizer, eventDetails);
 	    res.send({
 		status: "success",
 		data: {
-		    eventId : evt._id.toString()
+		    eventId : eventId
 		}
 	    });
 	});
