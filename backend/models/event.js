@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var createdDate = require('./plugins/createdDate');
 var config = require('../config.json');
 var mailgun = require('mailgun-js')({apiKey: config.mailgun.apiKey, domain: config.mailgun.domain});
-
+var ejs = require('ejs');
 
 var schema = mongoose.Schema({
     organizer : {type: String, ref: 'User'},
@@ -16,15 +16,23 @@ var schema = mongoose.Schema({
 schema.plugin(createdDate);
 
 schema.statics.emailOrganizer = function(organizer) {
-    var data = {
-	from: config.mailgun.sender,
-	to: organizer.name.first + " " + organizer.name.last + " <" + organizer._id + ">",
-	subject: 'Hello World',
-	text: 'Testing some Mailgun awesomness!'
-    };
+    var templatePath = "../email-templates/mailgun-template.html";
+    var templateData = { organizer: organizer };
+    var htmlContent = ejs.renderFile(templatePath, templateData, function(err, htmlString) {
+	if (err)
+	    return console.log(err);
 
-    mailgun.messages().send(data, function (error, body) {
-	console.log(body);
+	console.log(htmlString);
+	var data = {
+	    from: config.mailgun.sender,
+	    to: organizer.name.first + " " + organizer.name.last + " <" + organizer._id + ">",
+	    subject: 'Hello World',
+	    html: htmlString
+	};
+
+	mailgun.messages().send(data, function (error, body) {
+	    console.log(body);
+	});
     });
 };
 module.exports = mongoose.model('Event', schema);
