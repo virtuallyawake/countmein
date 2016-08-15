@@ -22,7 +22,6 @@ schema.statics.emailOrganizer = function(organizer, event) {
 	if (err)
 	    return console.log(err);
 
-	console.log(htmlString);
 	var data = {
 	    from: config.mailgun.sender,
 	    to: organizer.name.first + " " + organizer.name.last + " <" + organizer._id + ">",
